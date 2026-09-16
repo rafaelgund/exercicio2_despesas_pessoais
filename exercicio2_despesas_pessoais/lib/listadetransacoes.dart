@@ -1,5 +1,6 @@
 import 'package:exercicio2_despesas_pessoais/banco_de_dados.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 
 class Listadetransacoes extends StatefulWidget {
@@ -33,7 +34,7 @@ class _ListadetransacoesState extends State<Listadetransacoes> {
                 child: Text(registrosdecompras[index].valor.toString()),
               ),
               title: Text(registrosdecompras[index].titulo) ,
-              subtitle: Text(registrosdecompras[index].data.toString()),
+              subtitle: Text(DateFormat('dd MMM yyy' , 'Pt_br').format(registrosdecompras[index].data)),
               trailing: IconButton(onPressed: (){deletartransacao(index);}, icon: Icon(Icons.delete,color: Colors.red,)),
             ),
           );
