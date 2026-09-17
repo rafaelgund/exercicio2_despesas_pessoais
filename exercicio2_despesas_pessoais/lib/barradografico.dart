@@ -9,25 +9,27 @@ class Barradografico extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double larguradatela = MediaQuery.of(context).size.height;
-    return SizedBox(height: larguradatela*0.22,
-      child: LayoutBuilder( builder:(context, constraints) {
-        return Column(
-          children: [
-            SizedBox( height: constraints.maxHeight*0.15, child: FittedBox( child: Text(valordia.toString())),),
-            SizedBox(height: constraints.maxHeight*0.05),
-            SizedBox(height: constraints.maxHeight*0.6,
-            child: Stack(
-              alignment: AlignmentGeometry.bottomEnd,
-              children: [
-                        Container(width: 10, decoration: BoxDecoration(color: Colors.grey.shade300, border: Border.all(color: Colors.grey.shade400 )),),
-                        FractionallySizedBox( heightFactor: percentualdasemana, child: 
-                          Container(width: 10, decoration: BoxDecoration(color: Colors.purple.shade300, border: Border.all(color: Colors.grey.shade400 )),),),],
-            ),),
-            SizedBox(height: constraints.maxHeight*0.05),
-            SizedBox(height: constraints.maxHeight*0.15, child: Text(letradia),),
-          ],
-        );
-      },),
+    return Expanded(
+      child: SizedBox(height: larguradatela*0.22,
+        child: LayoutBuilder( builder:(context, constraints) {
+          return Column(
+            children: [
+              SizedBox( height: constraints.maxHeight*0.15, child: Text(' R\$ ${valordia.toString()}'),),
+              SizedBox(height: constraints.maxHeight*0.05),
+              SizedBox(height: constraints.maxHeight*0.6,
+              child: Stack(
+                alignment: AlignmentGeometry.bottomEnd,
+                children: [
+                          Container(width: 10, decoration: BoxDecoration(color: Colors.grey.shade300, border: Border.all(color: Colors.grey.shade400 )),),
+                          FractionallySizedBox( heightFactor: percentualdasemana, child: 
+                            Container(width: 10, decoration: BoxDecoration(color: Colors.purple.shade300, border: Border.all(color: Colors.grey.shade400 )),),),],
+              ),),
+              SizedBox(height: constraints.maxHeight*0.05),
+              SizedBox(height: constraints.maxHeight*0.15, child: Text(letradia),),
+            ],
+          );
+        },),
+      ),
     );
   }
 }

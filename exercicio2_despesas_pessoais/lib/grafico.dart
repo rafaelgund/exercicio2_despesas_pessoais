@@ -14,16 +14,16 @@ class Grafico extends StatelessWidget {
 
     for (int i =0 ; i< registrosdecompras.length; i++){
     valordasemana+= registrosdecompras[i].valor;  
-    bool dia = dadosdodia.day == registrosdecompras[index].data.day;
-    bool mes = dadosdodia.month == registrosdecompras[index].data.month;
-    bool ano = dadosdodia.year == registrosdecompras[index].data.year;
+    bool dia = dadosdodia.day == registrosdecompras[i].data.day;
+    bool mes = dadosdodia.month == registrosdecompras[i].data.month;
+    bool ano = dadosdodia.year == registrosdecompras[i].data.year;
 
     if( dia && mes && ano){
       valordodia+=registrosdecompras[i].valor;
     }
     }
     return {'valor' : valordodia , 'percentual' : valordodia/valordasemana , 'letra' : DateFormat.E('pt_br').format(dadosdodia)[0].toUpperCase()};
-  },);
+  },).reversed.toList();
  }
 
   @override

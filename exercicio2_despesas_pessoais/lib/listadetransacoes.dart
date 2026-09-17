@@ -3,22 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 
-class Listadetransacoes extends StatefulWidget {
- // final Transacao fontededados;
-   const new (/* this.fontededados, */ {super.key});
-
-  @override
-  State<Listadetransacoes> createState() => _ListadetransacoesState();
-}
-
-class _ListadetransacoesState extends State<Listadetransacoes> {
-  void deletartransacao(int ind){
-    setState(() {
-      registrosdecompras.removeWhere((i){
-       return  i.id == registrosdecompras[ind].id;
-      });
-    });
-  } 
+class Listadetransacoes extends StatelessWidget {
+   final  Function deletartransacao;
+   const new ( this.deletartransacao,  {super.key});
 
   @override
   Widget build(BuildContext context) {
