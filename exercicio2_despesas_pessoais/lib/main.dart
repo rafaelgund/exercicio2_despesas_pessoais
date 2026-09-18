@@ -1,9 +1,11 @@
+import 'package:exercicio2_despesas_pessoais/formulario.dart';
 import 'package:exercicio2_despesas_pessoais/grafico.dart';
 import 'package:exercicio2_despesas_pessoais/listadetransacoes.dart';
+import 'package:exercicio2_despesas_pessoais/objeto.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'banco_de_dados.dart';
-
+import 'dart:math';
 
 
 void  main() async {
@@ -41,6 +43,28 @@ class _PaginaInicialState extends State<PaginaInicial> {
       });
     });
   } 
+
+  void salvar(String titulo, String valor ,DateTime data){
+    if (titulo =="" || valor ==""){return;}
+   
+    setState(() {
+      Transacao dadosparasalvar = Transacao(id: Random().nextDouble(), titulo: titulo, valor: double.parse(valor), data: data);
+      registrosdecompras.add(dadosparasalvar);
+      Navigator.of(context).pop();
+    });
+  }
+
+  void abrirformulario(){
+
+    setState(() {
+      showModalBottomSheet(constraints: BoxConstraints(maxHeight:  MediaQuery.of(context).size.height*0.3), context: context, builder: (context) {
+        
+        return Formulario(salvar);
+      },);
+    });
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +73,8 @@ class _PaginaInicialState extends State<PaginaInicial> {
         Grafico(),
         Listadetransacoes(deletar)
       ],),),
-      floatingActionButton: FloatingActionButton(child: Icon(Icons.add), onPressed: (){},) ,
+      // ignore: sort_child_properties_last
+      floatingActionButton: FloatingActionButton(child: Icon(Icons.add), onPressed: abrirformulario,) ,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
